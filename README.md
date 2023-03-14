@@ -12,7 +12,7 @@
 # 알고리즘
 > + [ ] 시간 복잡도
 > + [ ] 공간복잡도
-> + [✅] 그리디 알고리즘
+> + [✅] [그리디 알고리즘](https://github.com/yunjinchoidev/problemSolving/blob/master/algorithm/%EA%B7%B8%EB%A6%AC%EB%94%94/greedy.md)
 > + 트리
 > + 그래프
 >   + [ ] BFS
