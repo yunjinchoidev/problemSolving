@@ -1,12 +1,29 @@
 import math
+import time
+# import sys
+# input = sys.stdin.readline
 
-n, m = map(int, input().split())
-balls = list(map(int, input().split()))
+start_time = time.time()
 
-ball_type = list(set(balls))
-answer = math.comb(n, 2)  # 모든 조합 개수
 
-for i in ball_type:
-    answer -= math.comb(balls.count(i), 2)  # 중복된 경우 만큼 뺴주기
+N = int(input())
+answer = 0
 
-print(answer)
+quotient, remain = divmod(N, 5)
+
+if remain == 0:
+    answer = quotient
+elif remain == 1:
+    answer = quotient + 2
+elif remain == 2 or remain == 4:
+    answer = quotient + remain / 2
+elif remain == 3:
+    answer = quotient + 3
+
+if N == 1 or N == 3:
+    answer = -1
+
+# 종료시간
+end_time = time.time()
+print("WorkingTime: {} sec".format(end_time-start_time))
+print(int(answer))
