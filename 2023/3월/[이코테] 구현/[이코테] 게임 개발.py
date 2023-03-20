@@ -59,9 +59,9 @@ while True:
     # 사방이 막혀있는 경우 바라보고 있는 방향에서 뒤로 이동한다.
     if all_block:
 
-        direction = (direction - 1) % 4
-        if direction == -1:
-            direction = 3
+        # direction = (direction - 1) % 4
+        # if direction == -1:
+        #     direction = 3
         back_yn = True
 
         nrow = row - move_row[direction]
@@ -86,7 +86,8 @@ while True:
     ncolumn = column + move_column[direction]
 
     if ncolumn < 0 or ncolumn >= M or nrow < 0 or nrow >= N:
-        continue
+        answer = -1
+        break
 
     '''
     STEP 2 -> 육지인경우
