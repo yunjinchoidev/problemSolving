@@ -1,4 +1,5 @@
 import sys
+from pprint import pprint
 
 input = sys.stdin.readline
 
@@ -17,14 +18,13 @@ visited[row][column] = True
 # 북, 서, 남, 동
 move_row = [-1, 0, 1, 0]
 move_column = [0, -1, 0, 1]
-
+back_yn = False
 
 # 바다인 것은 방문 불가능하므로 이미 방문했다고 체크한다.
 for i in range(N):
     for j in range(M):
         if map[i][j] == 1:
             visited[i][j] = True
-
 
 while True:
 
@@ -37,11 +37,8 @@ while True:
     all_block = False
     block_cnt = 0
 
-    nrow = row + move_row[direction]
-    ncolumn = column + move_column[direction]
-
     # 동서남북 돌면서 사방이 막혀있는지 확인
-    for i in range(4):
+    for i in range(1, 5):
         nrow = row + move_row[(direction + i) % 4]
         ncolumn = column + move_column[(direction + i) % 4]
 
@@ -56,34 +53,65 @@ while True:
     if block_cnt >= 4:
         all_block = True
 
-    # step3 : 사방이 막혀있는 경우(가본곳 or 바다) 바라보고 있는 방향에서 뒤로 이동한다.
+    '''
+    STEP 3
+    '''
+    # 사방이 막혀있는 경우 바라보고 있는 방향에서 뒤로 이동한다.
     if all_block:
-        row = row - move_row[direction]
-        column = column - move_column[direction]
 
-        if column < 0 or column >= M or row < 0 or row >= N:
-            break
-        visited[row][column] = True
+        direction = (direction - 1) % 4
+        if direction == -1:
+            direction = 3
+        back_yn = True
 
-        # 이 때 뒤 칸이 바다였다면 멈추고 종료 (끝)
-        if map[row][column] == 1:
-            break
+        nrow = row - move_row[direction]
+        ncolumn = column - move_column[direction]
 
-        # 육지라면 다시 시뮬레이션 진행
-        continue
-
-    '''
-    STEP 2
-    '''
-    if map[nrow][ncolumn] == 0:
         if ncolumn < 0 or ncolumn >= M or nrow < 0 or nrow >= N:
             break
 
+        # 사방이 막혀 있고 뒤로 가던 도중, 뒤 칸이 바다였다면 멈추고 종료 (끝)
+        if map[nrow][ncolumn] == 1 and back_yn:
+            break
+
+        row = nrow
+        column = ncolumn
+        back_yn = True # 뒤로 간다.
+        visited[nrow][ncolumn] = True
+
+        # 뒤로 이동한 상태를 유지하면서 재반복문.
+        continue
+
+    nrow = row + move_row[direction]
+    ncolumn = column + move_column[direction]
+
+    if ncolumn < 0 or ncolumn >= M or nrow < 0 or nrow >= N:
+        continue
+
+    '''
+    STEP 2 -> 육지인경우
+    '''
+    if map[nrow][ncolumn] == 0:
+
+        if back_yn:
+            # 방문하지 않은 경우에만 더해준다.
+            if not visited[nrow][ncolumn]:
+                answer += 1
+            visited[nrow][ncolumn] = True
+            row = nrow
+            column = ncolumn
+            visited[nrow][ncolumn] = True
+            continue
+
+        # 방문하지 않은 경우에만 더해준다. (어차피 방문한 경우에는 위에서 걸러진다.)
         if not visited[nrow][ncolumn]:
+            visited[nrow][ncolumn] = True
             row = nrow
             column = ncolumn
             answer += 1
+            back_yn = False
             visited[nrow][ncolumn] = True
 
+
 print(answer)
-print(visited)
+pprint(visited)
