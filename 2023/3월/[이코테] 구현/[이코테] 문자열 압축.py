@@ -1,38 +1,29 @@
 def solution(s):
-    answer = float("inf")
-
     r = []
 
-    # 1 ~
-    for i in range(1, len(s) - 1):
-        print(s)
-        length = len(s)
+    # i 는 문자를 몇 개 단위로 자를지 여부
+    for i in range(1, len(s) + 1):
         cnt = 1
-        substring = ''
-        # 문자열비교
-        for j in range(0, len(s), i):
+        substring = s[:i]
+        checkstring = ''
 
-            if j + i >= len(s):
-                continue
+        # 문자열비교, i 단위로 움직인다.
+        for j in range(i, len(s) + i, i):
 
-            if s[j:j + i] == s[j + i:j + 2 * i]:
+            if substring == s[j:j + i]:
                 cnt += 1
+
+            # 같지 않은 경우에 초기화 시켜주고 다시 반복문 돈다.
             else:
 
-                # 필요없는 식이지만 헷갈려서 적음.
                 if cnt != 1:
-                    length -= cnt * i
-                    substring += str(cnt) + s[j:j + i]
-                    cnt = 1
-                    # print(s)
+                    checkstring += str(cnt) + substring
                 else:
-                    cnt = 1
-                    substring += s[j:j + i]
-                    # print(s)
-        r.append([substring, i, length])
-        # print(substring)
-        answer = min(answer, length)
-    print(r)
-    return answer
+                    checkstring += substring
+                cnt = 1
+                substring = s[j:j + i]
 
-solution('aabbaccc')
+        r.append(len(checkstring))
+
+    answer = min(r)
+    return answer
