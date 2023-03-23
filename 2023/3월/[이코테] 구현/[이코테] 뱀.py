@@ -1,31 +1,25 @@
-# https://www.acmicpc.net/problem/3190
 import sys
-from pprint import pprint
-
 input = sys.stdin.readline
 
 N = int(input())
 apple_cnt = int(input())
 
-apples = []
-
+# 사과 표시하기
+apple_map = [[False for i in range(N)] for j in range(N)]
 for i in range(apple_cnt):
-    apples.append(list(map(int, input().split())))
+    r, c = list(map(int, input().split()))
+    apple_map[r-1][c-1] = True
 
+# 회전하기
 turn_cnt = int(input())
 turns = []
 for i in range(turn_cnt):
     turns.append(list(map(str, input().split())))
 
+# 뱀이 갈 수 있는 맵 선언
 snake_able_map = [[True for i in range(N)] for j in range(N)]
 
 
-apple_map = [[False for i in range(N)] for j in range(N)]
-
-for apple in apples:
-    apple_map[apple[0] - 1][apple[1] - 1] = True
-
-# 시뮬레이션 시작
 turn_idx = 0
 time = 0
 row, col = 0, 0
@@ -37,49 +31,53 @@ direction_idx = 0
 
 tail_row, tail_col = 0, 0
 
+# 뱀이 현재 위치하고 있는 영역을 보관한 리스트
 trace = []
 turn_time = int(turns[turn_idx][0])
 trace.append([0, 0])
 
 while True:
 
+    # 주어진 방향대로 일단 이동한다.
     nrow = row + direction[direction_idx][0]
     ncol = col + direction[direction_idx][1]
 
-    # 이동할려는 칸이 밖이라면 자기 자신과 닿으므로 break
+    # 유효성 검사 1) 이동할려는 칸이 밖이라면 break
     if nrow < 0 or nrow >= N or ncol < 0 or ncol >= N:
         time += 1
         break
 
-    # 상하좌우벽일 수도 있다.
+    # 유효성 검사 2) 자기 몸을 밟는 지 확인한다.
     if not snake_able_map[nrow][ncol]:
         # print("G")
         time += 1
         break
 
-    # 유효성 검사가 끝났다면 이제 이동을 한다.
+    # 이제 이동해도 된다.
 
-    # 이동 할 현재 위치를 trace 에 기록
+
+    # 새로운 머리 위치 snake_able_map 에 표시하고 이동할 위치를 trace 에 기록
     snake_able_map[nrow][ncol] = False
     trace.append([nrow, ncol])
-    # print(trace)
+
+
+    # 사과 먹었는지 확인한다.
     if apple_map[nrow][ncol] == True:
-        # 사과 먹음
+        # 사과 먹음 처리
         apple_map[nrow][ncol] = False
     else:
 
+        # 사과를 안먹었다면 trace 에서 먼저 들어온것을 제거하고, 이제 갈 수 있는 영역이다.
         tail_row, tail_col = trace.pop(0)
-        # print("whiy? ", tail_row, tail_col)
-
         snake_able_map[tail_row][tail_col] = True
 
-    # 움직이기 전에 turn 하는 지 확인한다.
 
-    # 이동 !
+    # 실제 이동 처리
     row = nrow
     col = ncol
     time += 1
 
+    # 이동까지 마치고 난 후 회전을 해야 한다면 회전한다.
     if time <= int(turns[-1][0]):
 
         # 움직이는 지 확인 검사.
