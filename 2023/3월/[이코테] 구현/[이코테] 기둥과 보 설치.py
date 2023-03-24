@@ -1,19 +1,17 @@
 def solution(n, build_frame):
-    answer = [[]]
 
     update_map = set()
 
+    # 정상 맵인지 완전 탐색하는 함수
     def is_normal(update_map):
 
         for material in update_map:
             # 보 라면
             if material[2] == 1:
-
                 # 한쪽에라도 기둥이 있으면 된다.
                 if (material[0], material[1] - 1, 0) in update_map or \
                         (material[0] + 1, material[1] - 1, 0) in update_map:
                     continue
-
                 # 양쪽에 보가 있으면 된다.
                 if (material[0] - 1, material[1], 1) in update_map and \
                         (material[0] + 1, material[1], 1) in update_map:
@@ -41,8 +39,10 @@ def solution(n, build_frame):
 
         return True
 
+
     for frame in build_frame:
 
+        # 추가한다면
         if frame[3] == 1:
             update_map.add((frame[0], frame[1], frame[2]))
 
@@ -60,9 +60,6 @@ def solution(n, build_frame):
     r = []
     for f in update_map:
         r.append(list(f))
-
     r.sort(key=lambda x: (x[0], x[1], x[2]))
 
-    answer = r
-
-    return answer
+    return r
