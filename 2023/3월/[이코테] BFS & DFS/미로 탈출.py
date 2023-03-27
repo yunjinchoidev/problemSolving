@@ -64,12 +64,3 @@ def BFS(row, col):
 
 
 print(BFS(0, 0))
-
-# answer = float('inf')
-# for r in range(N):
-#     for c in range(M):
-#         if map_[r][c] == 1 and not visited[r][c]:
-#             answer
-#             answer = min(answer, DFS(r, c))
-#
-# print(answer)

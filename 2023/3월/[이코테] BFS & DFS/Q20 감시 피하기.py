@@ -1,6 +1,5 @@
 import itertools
 import copy
-from pprint import pprint
 
 N = int(input())
 
@@ -36,23 +35,14 @@ def DFS(row, col, map_):
                     break
 
                 if map_[nr][nc] == 'S':
-                    # print("?", nr, nc)
-                    # pprint(visited)
                     return False
-
-
-
-
 
                 if not visited[nr][nc]:
                     visited[nr][nc] = True
-                    # stack.append((nr, nc))
 
-    # pprint(visited)
     return True
 
 
-# pprint(combis)
 for comb in combis:
     copy_map_ = copy.deepcopy(map_)
     copy_map_[comb[0][0]][comb[0][1]] = 'O'
@@ -61,9 +51,6 @@ for comb in combis:
 
     answer = 'YES'
 
-    # pprint(copy_map_)
-    # print(comb)
-    # if comb == ((1, 1), (0, 3), (3, 3)):
     for r in range(N):
         for c in range(N):
             if copy_map_[r][c] == 'T':
