@@ -1,6 +1,6 @@
 from collections import deque
 import sys
-sys = sys.stdin.readline
+input = sys.stdin.readline
 
 N, M, K, X = map(int, input().split())
 
@@ -11,7 +11,6 @@ adj = [[] for i in range(N + 1)]
 for i in range(M):
     s, e = map(int, input().split())
     adj[s].append((e))
-
 
 
 def BFS(s, distance):
@@ -38,7 +37,7 @@ def BFS(s, distance):
 
 
 result = BFS(X,0)
-
+result.sort()
 if len(result) > 0 :
     for r in result:
         print(r)
