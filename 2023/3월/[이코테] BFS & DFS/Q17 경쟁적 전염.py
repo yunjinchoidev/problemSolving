@@ -15,17 +15,19 @@ for r in range(N):
         if map_[r][c] != 0:
             orders.append((r, c, 0, map_[r][c]))
 
+# 숫자 순으로 정렬
 orders = sorted(orders, key=lambda x: x[3])
 orders = deque(orders)
 
 
+# 적은 초, 작은 숫자 부터 증식하므로 규칙을 만족하게 된다.
 def BFS(orders):
     global map_
 
     while orders:
         r, c, dep, num = orders.popleft()
 
-        if dep == S:
+        if dep == S + 1:
             break
 
         for i in range(4):
@@ -36,9 +38,10 @@ def BFS(orders):
                 continue
 
             if map_[nr][nc] == 0:
-                map_[nr][nc] = num
+                map_[nr][nc] = num  # BFS 로직에 따라 우선순위 바이러스가 공간을 먼저 차지함.
                 orders.append((nr, nc, dep + 1, num))
 
 
 BFS(orders)
-print(map_[X - 1][Y - 1])
+
+print(map_[X - 1][Y - 1])  # S 초후 (X,Y) 에 존재하는 바이러스
