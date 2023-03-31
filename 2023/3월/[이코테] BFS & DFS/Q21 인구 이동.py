@@ -1,15 +1,19 @@
 from collections import deque
+import sys
+
+input = sys.stdin.readline
 
 N, L, R = map(int, input().split())
 
-contries = [list(map(int, input().split())) for i in range(N)]
+countries = [list(map(int, input().split())) for i in range(N)]
 
 # 북동남서
 dr = [-1, 0, 1, 0]
 dc = [0, 1, 0, -1]
 
 
-def is_all_same(arr):
+# 모두 같은 지 확인하는 함수
+def is_population_all_same(arr):
     total = 0
     count = 0
     for row in arr:
@@ -26,17 +30,15 @@ def is_all_same(arr):
     return True
 
 
-
-def DFS(row, col, depth, sum_number, visited):
+def population_move_dfs(row, col, depth, sum_number, visited):
     stack = []
     stack.append((row, col, depth, sum_number))
-    result = set()
+    move_contries = set()
     visited[row][col] = True
-    is_updated = False
 
     while stack:
         r, c, d, sn = stack.pop()
-        result.add((r, c))
+        move_contries.add((r, c))
 
         for i in range(4):
             nr = r + dr[i]
@@ -45,45 +47,53 @@ def DFS(row, col, depth, sum_number, visited):
             if nr < 0 or nr >= N or nc < 0 or nc >= N:
                 continue
 
-            human_gab = abs(contries[nr][nc] - contries[r][c])
+            population_gab = abs(countries[nr][nc] - countries[r][c])
 
-            if not visited[nr][nc] and (L <= human_gab and human_gab <= R):
-                stack.append((nr, nc, d + 1, sn + contries[nr][nc]))
+            # 규칙에 부합한다면 이동을 한다.
+            if not visited[nr][nc] and (L <= population_gab and population_gab <= R):
+                stack.append((nr, nc, d + 1, sn + countries[nr][nc]))
                 visited[nr][nc] = True
-                result.add((nr, nc))
+                move_contries.add((nr, nc))
+
+    # 두 나라 이상이 이동을 했다면 인구 조정을 해주고 True 를 리턴한다.
+    if len(move_contries) >= 2:
+        total_population = 0
+        for i, j in move_contries:
+            total_population += countries[i][j]
+
+        # 인구 규칙에 맞게 인구 조정 작업
+        for i, j in move_contries:
+            countries[i][j] = total_population // len(move_contries)
+        return True  # 이동을 했다.
 
 
-    if len(result) >= 2:
-        is_updated = True
-
-    s = 0
-    for i, j in result:
-        s += contries[i][j]
-
-    for r in result:
-        contries[r[0]][r[1]] = s // len(result)
-    return is_updated
+    # 여기 까지 왔다면 이동을 안했다는 것.
+    return False  # 이동을 안했다.
 
 
-update_day = 0
+move_days = 0
+
+
+# 인구 이동이 없을 떄 까지 is_moved_dfs 를 진행한다.
 while True:
-
-    if is_all_same(contries):
+    # 모두 인구 수가 같다면 인구 이동은 없다.
+    if is_population_all_same(countries):
         break
 
     visited = [[False for c in range(N)] for r in range(N)]
 
-    is_update = True
-    update_cnt = 0
+    is_updated = False
     for r in range(N):
         for c in range(N):
             if not visited[r][c]:
-                is_update = DFS(r, c, 0, contries[r][c], visited)
+                if population_move_dfs(r, c, 0, countries[r][c], visited): # 이동이 있었다면 while 문 계속 진행
+                    is_updated = True
 
-                if is_update:
-                    update_cnt += 1
-
-    if update_cnt == 0:
+    # 한 번도 이동이 없었다면
+    if not is_updated:
         break
-    update_day += 1
-print(update_day)
+
+    # 여기까지 왔다면 인구 이동이 정상적으로 이뤄졌으므로 하루 지남.
+    move_days += 1
+
+print(move_days)
