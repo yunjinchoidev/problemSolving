@@ -1,8 +1,14 @@
 import sys
+
 input = sys.stdin.readline
 
 N = int(input())
 numbers = []
-numbers.append(int(input()))
-numbers.sort()
-print(numbers)
+
+for i in range(N):
+    numbers.append(int(input()))
+
+numbers.sort(reverse=True)
+
+for number in numbers:
+    print(number, end=' ')
