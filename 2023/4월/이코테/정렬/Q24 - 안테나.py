@@ -1,24 +1,24 @@
 N = int(input())
 
-numbers = list(map(int, input().split()))
+postions = list(map(int, input().split()))
 
-numbers.sort()
+postions.sort()
 
-answer = sum(numbers)
-idx = 0
+answer = sum(postions)
+left_number_idx = 0
 
 r = []
-for i in range(1, numbers[-1]):
-    if i < numbers[idx]:
-        answer -= (N - idx)
-        answer += idx
-    elif i == numbers[idx]:
-        answer -= (N - idx)
-        answer += idx
-        idx += 1
+for position in postions:
+    if position < postions[left_number_idx]:
+        answer -= (N - left_number_idx)
+        answer += left_number_idx
+    elif position == postions[left_number_idx]:
+        answer -= (N - left_number_idx)
+        answer += left_number_idx
+        left_number_idx += 1 # 왼쪽 갯수 증가
 
-    r.append((answer, i))
+    r.append((answer, position))
 
-# print(r)
+
 r.sort(key=lambda x: (x[0], x[1]))
 print(min(r)[1])
