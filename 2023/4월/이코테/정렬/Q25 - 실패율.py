@@ -3,24 +3,24 @@ from collections import Counter
 
 def solution(N, stages):
     answer = []
-    x = Counter(stages)
-    stages.sort()
-    s = set(stages)
+    length = len(stages)
 
-    fail = [[i, 0] for i in range(N + 2)]
-    visited = [False for i in range(N + 2)]
+    for i in range(1, N + 1):
 
-    for i in range(len(stages)):
-        if not visited[stages[i]]:
-            visited[stages[i]] = True
-            fail[stages[i]][1] = x[stages[i]] / (len(stages) - i)
+        count = stages.count(i)  # 사람 수 계싼
 
-    del fail[0]
-    del fail[len(fail) - 1]
+        # 실패율
+        if length == 0:
+            fail = 0
+        else:
+            fail = count / length
 
-    qq = sorted(fail, key=lambda x: (-x[1], x[0]))
-    print(qq)
-    for i in qq:
-        answer.append(i[0])
+        # 리스트에 (스테이지 번호, 실패율) 원소 삽입
+        answer.append((i, fail))
+        length -= count  # 인구 업데이트
+
+    answer = sorted(answer, key=lambda t: t[1], reverse=True)
+
+    answer = [i[0] for i in answer]
 
     return answer
