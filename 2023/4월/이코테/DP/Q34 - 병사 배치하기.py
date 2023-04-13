@@ -22,4 +22,4 @@ for i in range(2, N+1):
 
 
 # print(dp)
-print(N-dp[N])
+print(N-max(dp))
