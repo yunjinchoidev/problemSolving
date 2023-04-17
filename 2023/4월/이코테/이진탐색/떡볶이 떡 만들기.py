@@ -8,26 +8,21 @@ s = 0
 answer = 0
 
 def binary_search(start, end, numbers, M):
-    if start > end:
-        return None
-    mid = (start+end)//2
+    result = 0
+    while start <= end:
+        mid = (start+end)//2
 
+        s = 0
+        for number in numbers:
+            if number > mid:
+                s += number - mid
 
-    s = 0
-    for number in numbers:
-        if number > mid:
-            s += number - mid
+        if s >= M:
+            result = mid
+            start = mid + 1
+        else:
+            end = mid - 1
 
+    return result
 
-
-    if s >= M:
-        return binary_search(mid+1, end, numbers, M)
-    else:
-        return binary_search(start, mid-1, numbers, M)
-
-numbers.sort()
-
-while True:
-    if binary_search(0, height, numbers, M):
-        answer = binary_search(0, height, numbers, M)
-        break
+print(binary_search(0, height, numbers, M))
