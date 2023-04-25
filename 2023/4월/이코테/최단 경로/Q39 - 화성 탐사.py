@@ -9,7 +9,6 @@ INF = 1e9
 dr = [1, -1, 0, 0]
 dc = [0, 0, 1, -1]
 
-# 다익스트라
 
 
 for _ in range(T):
@@ -24,6 +23,7 @@ for _ in range(T):
     heapq.heappush(q, (graph[0][0], 0, 0))
     distance[0][0] = graph[0][0]
 
+    # 다익스트라
     while q:
         dist, r, c = heapq.heappop(q)
 
