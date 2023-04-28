@@ -110,7 +110,7 @@
 #         result %= 60
 #         s = result
 #
-#         if h <= 11:
+#         if h <= 10:
 #             h = '0' + str(h)
 #
 #         if s < 10:
@@ -125,9 +125,72 @@
 
 
 
+# 정답 풀이
+def solution(play_time, adv_time, logs):
+    answer = ''
 
+    hp, mp, sp = play_time.split(':')
+    int_play_time = 3600 * int(hp) + 60 * int(mp) + int(sp)
+    ha, ma, sa = adv_time.split(':')
+    int_adv_time = 3600 * int(ha) + 60 * int(ma) + int(sa)
+    play_arr = [0 for i in range(int_play_time)]
 
+    def str_to_time_one(st):
 
+        s, e = st.split('-')
+        h1, m1, s1 = s.split(':')
+        h2, m2, s2 = e.split(':')
+        int_s = 3600 * int(h1) + 60 * int(m1) + int(s1)
+        int_e = 3600 * int(h2) + 60 * int(m2) + int(s2)
+
+        return int_s, int_e
+
+    dp = [0 for i in range(int_play_time + 1)]
+
+    for log in logs:
+        s, e = str_to_time_one(log)
+        dp[s] += 1
+        dp[e] -= 1
+
+    for i in range(1, len(dp)):
+        dp[i] += dp[i - 1]
+
+    result = 0
+    u = len(dp) - int_adv_time
+    prev = sum(play_arr[:int_adv_time])
+    current_max = prev
+    for i in range(u):
+        s = prev - dp[i] + dp[i + int_adv_time]
+
+        if s > current_max:
+            result = i
+            current_max = s
+
+        prev = s
+
+    if result == 0:
+        answer = '00:00:00'
+    else:
+        result += 1
+
+        h = result // 3600
+        result %= 3600
+        m = result // 60
+        result %= 60
+        s = result
+
+        if h < 10:
+            h = '0' + str(h)
+
+        if s < 10:
+            s = '0' + str(s)
+
+        if m < 10:
+            m = '0' + str(m)
+
+        answer = str(h) + ':' + str(m) + ':' + str(s)
+
+    return answer
 
 
 
