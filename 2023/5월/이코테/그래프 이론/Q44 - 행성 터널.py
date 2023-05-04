@@ -1,14 +1,11 @@
 import sys
-
+input = sys.stdin.readline
 N = int(input())
-planets = [list(map(int, input().split())) for i in range(N)]
-
 
 def find_parent(parent, x):
     if parent[x] != x:
         parent[x] = find_parent(parent, parent[x])
     return parent[x]
-
 
 # 두 원소가 속한 집합을 합치기
 def union_parent(parent, a, b):
@@ -25,12 +22,24 @@ for i in range(0, N + 1):
     parent[i] = i
 
 edges = []
+x = []
+y = []
+z = []
+
 for i in range(N):
-    for j in range(i, N):
-        edges.append((min(abs(planets[i][0] - planets[j][0]),
-                          abs(planets[i][1] - planets[j][1]),
-                          abs(planets[i][2] - planets[j][2]))
-                      , i, j))
+    a, b, c = map(int, input().split())
+    x.append((a, i))
+    y.append((b, i))
+    z.append((c, i))
+
+x.sort()
+y.sort()
+z.sort()
+
+for i in range(N - 1):
+    edges.append((x[i + 1][0] - x[i][0], x[i+1][1], x[i][1]))
+    edges.append((y[i + 1][0] - y[i][0], y[i+1][1], y[i][1]))
+    edges.append((z[i + 1][0] - z[i][0], z[i+1][1], z[i][1]))
 
 edges.sort()
 
@@ -40,9 +49,5 @@ for edge in edges:
     if find_parent(parent, s) != find_parent(parent, e):
         union_parent(parent, s, e)
         result.append(cost)
-    #
-    # if len(result) == N:
-    #     break
 
-# print(planets)
 print(sum(result))
