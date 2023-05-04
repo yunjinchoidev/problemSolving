@@ -1,4 +1,5 @@
 import sys
+input = sys.stdin.readline
 
 N, M = map(int, input().split())
 
@@ -29,7 +30,7 @@ for i in range(0, N + 1):
 
 
 total_sum = 0
-result = []
+result = 0
 
 for i in range(M):
     s, e, cost = edges[i]
@@ -37,9 +38,9 @@ for i in range(M):
 
     if find_parent(parent, s) != find_parent(parent, e):
         union_parent(parent, s, e)
-        result.append(cost)
+        result += cost
 
-print(total_sum - sum(result))
+print(total_sum - result)
 
 
 
