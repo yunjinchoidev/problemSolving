@@ -108,113 +108,120 @@ print(result)
 
 
 # 기존 실패 풀이
-import sys
-
-map_ = [[] for _ in range(4)]
-
-dr = [-1, -1, 0, 1, 1, 1, 0, -1]
-dc = [0, -1, -1, -1, 0, 1, 1, 1]
-
-for i in range(4):
-    numbers = list(map(int, sys.stdin.readline().split()))
-    for j in range(0, 8, 2):
-        # 물고기 번호, 방향, 생존여부
-        map_[i].append([numbers[j], numbers[j + 1] - 1])
-
-dead_fishs = []
-
-
-def find_fish(num):
-    for r in range(4):
-        for c in range(4):
-            if map_[r][c][0] == num:
-                return r, c, map_[r][c][1]
-
-    return None
-
-
-dead = []
-dead_fishs.append(map_[0][0])
-dead.append(map_[0][0][0])
-x = map_[0][0][0]
-map_[0][0][0] = 99  # 상어 자리
-
-result = []
-
-
-def simul(r, c, d, eating, dead):
-    print(r, c, d, eating, dead)
-
-
-    # 물고기 무브
-    for i in range(1, 17):
-        if i not in dead:
-
-            if find_fish(i) == None:
-                continue
-
-            r, c, direction = find_fish(i)
-
-            while True:
-
-                nr = r + dr[direction]
-                nc = c + dc[direction]
-
-                if nr < 0 or nr >= 4 or nc < 0 or nc >= 4:
-                    direction += 1
-                    direction %= 8
-                    continue
-
-                if map_[nr][nc][0] == 99:  # 상어라면
-                    direction += 1
-                    direction %= 8
-                    continue
-
-                nn = map_[nr][nc][0]
-                nd = map_[nr][nc][1]
-
-                map_[nr][nc][0] = i
-                map_[nr][nc][1] = direction
-
-                map_[r][c][0] = nn
-                map_[r][c][1] = nd
-
-                break
-
-    # 상어 무브
-    flag = False
-
-    for i in range(4):
-        nr = r + dr[d] * i
-        nc = c + dc[d] * i
-
-        if nr < 0 or nr >= 4 or nc < 0 or nc >= 4:
-            continue
-
-        if map_[nr][nc][0] != 99 and map_[nr][nc][0] != 0:
-            dead.append(map_[nr][nc][0])
-            u = map_[nr][nc][0]
-            eating += u
-            map_[nr][nc][0] = 99
-            map_[r][c][0] = 0
-            flag = True
-
-            # 백트래킹
-            simul(nr, nc, map_[nr][nc][1], eating, dead)
-
-
-            eating -= u
-            map_[r][c][0] = 99
-            map_[nr][nc][0] = 0
-            dead.pop()
-
-
-    if not flag:
-        result.append(eating)
-        return
-
-
-
-r = simul(0, 0, map_[0][0][1], x, dead)
-
-print(max(r))
+# import sys
+#
+# map_ = [[] for _ in range(4)]
+#
+# dr = [-1, -1, 0, 1, 1, 1, 0, -1]
+# dc = [0, -1, -1, -1, 0, 1, 1, 1]
+#
+# for i in range(4):
+#     numbers = list(map(int, sys.stdin.readline().split()))
+#     for j in range(0, 8, 2):
+#         # 물고기 번호, 방향, 생존여부
+#         map_[i].append([numbers[j], numbers[j + 1] - 1])
+#
+# # 물고기 위치 찾기
+# def find_fish(num):
+#     for r in range(4):
+#         for c in range(4):
+#             if map_[r][c][0] == num:
+#                 return r, c, map_[r][c][1]
+#
+#     return None
+#
+# result = []
+#
+#
+# # 시뮬
+# def simul(r, c, d, eating, dead):
+#     print(r, c, d, eating, dead)
+#
+#
+#     # 물고기 무브
+#     for i in range(1, 17):
+#
+#         # 안 잡힌 물고기 중에서만.
+#         if i not in dead:
+#             if find_fish(i) == None:
+#                 continue
+#
+#             r, c, direction = find_fish(i)
+#
+#
+#             # 교체 될때까지 계속함
+#             while True:
+#
+#                 nr = r + dr[direction]
+#                 nc = c + dc[direction]
+#
+#                 if nr < 0 or nr >= 4 or nc < 0 or nc >= 4: # 맵 밖이면 회전함
+#                     direction += 1
+#                     direction %= 8
+#                     continue
+#
+#                 if map_[nr][nc][0] == 99:  # 상어여도 회전함
+#                     direction += 1
+#                     direction %= 8
+#                     continue
+#
+#
+#                 # 교체
+#                 nn = map_[nr][nc][0]
+#                 nd = map_[nr][nc][1]
+#
+#                 map_[nr][nc][0] = i
+#                 map_[nr][nc][1] = direction
+#
+#                 map_[r][c][0] = nn
+#                 map_[r][c][1] = nd
+#
+#                 break
+#
+#     # 상어 움직임 처리
+#     flag = False
+#
+#     for i in range(4):
+#         nr = r + dr[d] * i
+#         nc = c + dc[d] * i
+#
+#         if nr < 0 or nr >= 4 or nc < 0 or nc >= 4:
+#             continue
+#
+#         # 물고기 공간만 갈 수 있음.
+#         if map_[nr][nc][0] != 0:
+#             dead.append(map_[nr][nc][0])
+#             u = map_[nr][nc][0]
+#             eating += u
+#             map_[nr][nc][0] = 99
+#             map_[r][c][0] = 0
+#             flag = True
+#
+#             # 백트래킹
+#             simul(nr, nc, map_[nr][nc][1], eating, dead)
+#
+#
+#             # 원복
+#             eating -= u
+#             map_[r][c][0] = 99
+#             map_[nr][nc][0] = 0
+#             dead.pop()
+#
+#
+#     # 한 번도 이동 할 수 없으면 종료함.
+#     if not flag:
+#         result.append(eating)
+#         return
+#
+#
+# # 잡아 먹힌 물고기
+# dead = []
+# init_fish = map_[0][0][0]
+# dead.append(init_fish)
+# map_[0][0][0] = 99  # 상어 자리
+#
+#
+# # 시뮬 시작.
+# r = simul(0, 0, map_[0][0][1], init_fish, dead)
+#
+# print(max(r))
