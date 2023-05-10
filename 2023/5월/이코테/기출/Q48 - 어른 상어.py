@@ -49,9 +49,9 @@ def find_all_sharks():
                                map_[r][c][1],
                                map_[r][c][2],
                                map_[r][c][3],
-                               r, c])
+                               r, c]) # r,c 는 좌표임.
 
-    # 작은 상어부터 이동해야 나중에 어긋나는 일이 없음.
+    # 작은 상어부터 이동해서 첫번째걸 가져오는 방식.
     sharks.sort()
     return sharks
 
