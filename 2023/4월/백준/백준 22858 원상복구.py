@@ -1,7 +1,9 @@
 import sys
 
+
 def input():
     return sys.stdin.readline().rstrip()
+
 
 N, K = map(int, input().split())
 

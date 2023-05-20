@@ -1,14 +1,14 @@
 def solution(today, terms, privacies):
     answer = []
-    t_y, t_m, t_d = map(int, today.split('.'))
+    t_y, t_m, t_d = map(int, today.split("."))
     l = [31, 30, 28]
     for i in range(len(privacies)):
-        x, t = privacies[i].split(' ')
-        y, m, d = map(int, x.split('.'))
+        x, t = privacies[i].split(" ")
+        y, m, d = map(int, x.split("."))
 
         for j in range(len(terms)):
-            if t == terms[j].split(' ')[0]:
-                m += int(terms[j].split(' ')[1])
+            if t == terms[j].split(" ")[0]:
+                m += int(terms[j].split(" ")[1])
 
                 if m > 12 and m % 12 != 0:
                     y += int(m / 12)

@@ -1,5 +1,5 @@
 def solution(number, k):
-    answer = ''
+    answer = ""
     stack = []
     for num in number:
         while stack and stack[-1] < num and k >= 1:
@@ -11,9 +11,8 @@ def solution(number, k):
         for i in range(k):
             stack.pop()
 
-    answer = ''.join(stack)
+    answer = "".join(stack)
     return answer
-
 
 
 # 스택을 생각하지 못한 채로

@@ -7,6 +7,7 @@ N, M = map(int, input().split())
 
 graph = [[] for i in range(N + 1)]
 
+
 def find_parent(parent, x):
     if parent[x] != x:
         parent[x] = find_parent(parent, parent[x])
@@ -44,4 +45,4 @@ for edge in edges:
         union_parent(parent, s, e)
         result.append(cost)
 
-print(sum(result)-max(result))
+print(sum(result) - max(result))

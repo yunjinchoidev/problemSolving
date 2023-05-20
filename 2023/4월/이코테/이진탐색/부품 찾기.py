@@ -1,4 +1,5 @@
 import sys
+
 input = sys.stdin.readline
 
 
@@ -23,7 +24,7 @@ partials.sort()
 
 answer = 0
 for purchase in purchases:
-    if binary_search(partials, purchase, 0, N-1):
-        print('yes', end=' ')
+    if binary_search(partials, purchase, 0, N - 1):
+        print("yes", end=" ")
     else:
-        print('no', end=' ')
+        print("no", end=" ")

@@ -17,7 +17,7 @@ position_combinations = list(itertools.combinations(possible_position, 3))
 dr = [-1, 0, 1, 0]
 dc = [0, 1, 0, -1]
 
-answer = -float('inf')
+answer = -float("inf")
 
 
 def BFS(sr, sc):
@@ -41,9 +41,9 @@ def BFS(sr, sc):
                 new_map[nr][nc] = 2
                 d.append((nr, nc))
 
+
 # 모든 조합에 대해서 BFS 를 수행
 for combi in position_combinations:
-
     # 안전영역 수
     safe_zone_cnt = 0
 
@@ -59,7 +59,6 @@ for combi in position_combinations:
         for c in range(M):
             if new_map[r][c] == 2 and not new_visited[r][c]:
                 BFS(r, c)
-
 
     # 바이러스가 완전 탐색을 마쳤으므로 안전영역의 갯수는 단순히 0 의 개수다.
     for row in new_map:

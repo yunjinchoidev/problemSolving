@@ -23,6 +23,7 @@
 #     answer = max(result)
 #     return answer
 
+
 # DP
 def solution(triangle):
     answer = 0

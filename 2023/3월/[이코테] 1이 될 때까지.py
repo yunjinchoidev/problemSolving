@@ -10,6 +10,6 @@ else:
 dp[K] = 1
 
 for i in range(3, N + 1):
-    dp[i] = min(dp[i - 1] + 1, dp[int(i/N)] + 1)
+    dp[i] = min(dp[i - 1] + 1, dp[int(i / N)] + 1)
 
 print(dp[N])

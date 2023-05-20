@@ -9,10 +9,9 @@ def solution(operations):
         x = i.split(" ")[0]
         y = int(i.split(" ")[1])
 
-        if x == 'I':
+        if x == "I":
             heapq.heappush(h, y)
-        elif x == 'D':
-
+        elif x == "D":
             if len(h) == 0:
                 continue
 

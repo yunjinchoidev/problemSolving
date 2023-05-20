@@ -97,16 +97,6 @@ dfs(array, 0, 0, 0)
 print(result)
 
 
-
-
-
-
-
-
-
-
-
-
 # 기존 실패 풀이
 # import sys
 #

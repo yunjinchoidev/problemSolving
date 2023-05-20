@@ -85,7 +85,6 @@ def solution(food_times, k):
         return -1
 
     while True:
-
         now_mount = h[0][0]
         gap = now_mount - pre_mount
 

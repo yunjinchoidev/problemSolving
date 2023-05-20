@@ -36,6 +36,3 @@ for i in range(M):
             print("NO")
         else:
             print("YES")
-
-
-

@@ -7,6 +7,7 @@ cals = list(map(int, input().split()))
 combination = []
 combination_result = []
 
+
 def DFS(cal_list, stack, num, depth):
     if sum(cal_list) == 0:
         combination.append(stack)
@@ -28,7 +29,7 @@ def DFS(cal_list, stack, num, depth):
             elif i == 2:
                 num *= numbers[depth]
             elif i == 3:
-                num = int(num/numbers[depth])
+                num = int(num / numbers[depth])
 
             DFS(cal_list, stack, num, depth)
             cal_list[i] += 1
@@ -36,7 +37,8 @@ def DFS(cal_list, stack, num, depth):
             num = temp_num
             depth -= 1
 
-DFS(cals, '', numbers[0], 0)
+
+DFS(cals, "", numbers[0], 0)
 
 print(max(combination_result))
 print(min(combination_result))

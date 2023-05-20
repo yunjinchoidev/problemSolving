@@ -11,7 +11,6 @@ for i in range(T):
 
     d = deque(numbers)
 
-
     idx = 0
     while d:
         m = max(d)
@@ -30,4 +29,3 @@ for i in range(T):
                 M = len(d) - 1
             else:
                 M -= 1
-

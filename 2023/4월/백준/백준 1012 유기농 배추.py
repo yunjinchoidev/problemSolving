@@ -6,11 +6,14 @@ from pprint import pprint
 def input():
     return sys.stdin.readline().rstrip()
 
+
 T = int(input())
 
 
 dr = [-1, 1, 0, 0]
 dc = [0, 0, -1, 1]
+
+
 def bfs(row, col, visited):
     global cabbage
 
@@ -29,7 +32,7 @@ def bfs(row, col, visited):
             nr = r + dr[i]
             nc = c + dc[i]
 
-            if nr < 0 or nr >= N  or nc < 0 or nc >= M:
+            if nr < 0 or nr >= N or nc < 0 or nc >= M:
                 continue
 
             if cabbage[nr][nc] == 1 and not visited[nr][nc]:
@@ -55,4 +58,3 @@ for _ in range(T):
                 answer += 1
 
     print(answer)
-

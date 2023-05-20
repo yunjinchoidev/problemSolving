@@ -12,9 +12,8 @@ while True:
         print(len(s))
         break
     else:
-        x = s[:len(s) - idx]
+        x = s[: len(s) - idx]
         y = s[idx]
-        z = s[len(s)- idx:]
-        s = x+y+z
+        z = s[len(s) - idx :]
+        s = x + y + z
         idx += 1
-

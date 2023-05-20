@@ -1,5 +1,6 @@
 from collections import deque
 
+
 class Solution:
     def minDistance(self, word1: str, word2: str) -> int:
         if word1 == word2:
@@ -29,4 +30,3 @@ class Solution:
                 queue.append((i + 1, j + 1))
                 queue.append((i + 1, j))
             num += 1
-

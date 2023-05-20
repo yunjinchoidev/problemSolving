@@ -6,7 +6,6 @@ def solution(N, stages):
     length = len(stages)
 
     for i in range(1, N + 1):
-
         count = stages.count(i)  # 사람 수 계싼
 
         # 실패율

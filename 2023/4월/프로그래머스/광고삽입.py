@@ -47,8 +47,6 @@
 #     return answer
 
 
-
-
 # 두번 째 풀이
 
 # def solution(play_time, adv_time, logs):
@@ -124,22 +122,20 @@
 #     return answer
 
 
-
 # 정답 풀이
 def solution(play_time, adv_time, logs):
-    answer = ''
+    answer = ""
 
-    hp, mp, sp = play_time.split(':')
+    hp, mp, sp = play_time.split(":")
     int_play_time = 3600 * int(hp) + 60 * int(mp) + int(sp)
-    ha, ma, sa = adv_time.split(':')
+    ha, ma, sa = adv_time.split(":")
     int_adv_time = 3600 * int(ha) + 60 * int(ma) + int(sa)
     play_arr = [0 for i in range(int_play_time)]
 
     def str_to_time_one(st):
-
-        s, e = st.split('-')
-        h1, m1, s1 = s.split(':')
-        h2, m2, s2 = e.split(':')
+        s, e = st.split("-")
+        h1, m1, s1 = s.split(":")
+        h2, m2, s2 = e.split(":")
         int_s = 3600 * int(h1) + 60 * int(m1) + int(s1)
         int_e = 3600 * int(h2) + 60 * int(m2) + int(s2)
 
@@ -169,7 +165,7 @@ def solution(play_time, adv_time, logs):
         prev = s
 
     if result == 0:
-        answer = '00:00:00'
+        answer = "00:00:00"
     else:
         result += 1
 
@@ -180,32 +176,14 @@ def solution(play_time, adv_time, logs):
         s = result
 
         if h < 10:
-            h = '0' + str(h)
+            h = "0" + str(h)
 
         if s < 10:
-            s = '0' + str(s)
+            s = "0" + str(s)
 
         if m < 10:
-            m = '0' + str(m)
+            m = "0" + str(m)
 
-        answer = str(h) + ':' + str(m) + ':' + str(s)
+        answer = str(h) + ":" + str(m) + ":" + str(s)
 
     return answer
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

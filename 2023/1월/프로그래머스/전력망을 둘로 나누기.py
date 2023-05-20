@@ -37,4 +37,3 @@ def solution(n, wires):
         if abs(cnt - other_cnts) < answer:  ## 갭이 최소 인 것으로 업데이트 해주기
             answer = abs(cnt - other_cnts)
     return answer
-

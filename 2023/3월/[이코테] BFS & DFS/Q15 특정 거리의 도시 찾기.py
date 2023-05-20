@@ -29,7 +29,7 @@ def BFS(s, distance):
             result.append(x)
 
         # K+1 이상이 되면 BFS 탐색 종료
-        if dis >= K+1:
+        if dis >= K + 1:
             return result
 
         for adj in adjacent[x]:

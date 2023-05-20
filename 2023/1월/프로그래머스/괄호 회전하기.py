@@ -11,20 +11,20 @@ def solution(s):
         stack = []
         cnt = 0
         for i in range(len(d)):
-            if d[i] == '[' or d[i] == '{' or d[i] == '(':
+            if d[i] == "[" or d[i] == "{" or d[i] == "(":
                 stack.append(d[i])
                 cnt += 1
                 continue
             if stack:
-                if d[i] == ']' and stack[-1] == '[':
+                if d[i] == "]" and stack[-1] == "[":
                     stack.pop()
                     cnt += 1
                     continue
-                if d[i] == '}' and stack[-1] == '{':
+                if d[i] == "}" and stack[-1] == "{":
                     stack.pop()
                     cnt += 1
                     continue
-                if d[i] == ')' and stack[-1] == '(':
+                if d[i] == ")" and stack[-1] == "(":
                     stack.pop()
                     cnt += 1
                     continue

@@ -8,15 +8,15 @@ def solution(answers):
     score = [0, 0, 0]
 
     for i, answer in enumerate(answers):
-        if one[i%5] == answer:
+        if one[i % 5] == answer:
             score[0] += 1
-        if two[i%8] == answer:
+        if two[i % 8] == answer:
             score[1] += 1
-        if three[i%10] == answer:
+        if three[i % 10] == answer:
             score[2] += 1
 
     for i in range(len(score)):
         if max(score) == score[i]:
-            result.append(i+1)
+            result.append(i + 1)
 
     return result

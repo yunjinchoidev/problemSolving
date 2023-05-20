@@ -20,9 +20,9 @@ def solution(id_list, report, k):
     for w in check:
         # print(idx)
         for j in range(len(id_list)):
-            x = ''
+            x = ""
             x += str(id_list[j])
-            x += ' '
+            x += " "
             x += str(w)
             if str(x) in s:  # s 에서 검사해야 한다.
                 answer[j] += 1

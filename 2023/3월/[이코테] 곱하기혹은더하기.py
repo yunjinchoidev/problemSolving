@@ -4,7 +4,6 @@ numbers = list(map(int, str(N)))
 result = 0
 
 for i in range(len(numbers)):
-
     # 0 이라면 pass
     if numbers[i] == 0:
         continue
@@ -16,7 +15,7 @@ for i in range(len(numbers)):
         continue
 
     plus_result = result + numbers[i]
-    multi_result = result*numbers[i]
+    multi_result = result * numbers[i]
 
     # 더한게 더 크다면
     if plus_result >= multi_result:

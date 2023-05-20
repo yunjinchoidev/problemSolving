@@ -11,26 +11,25 @@ nc = [-1, 0, 1, -1, 1, -1, 0, 1]
 jiroi = False
 for i in range(N):
     for j in range(N):
-        if played_map[i][j] == 'x' and map_[i][j] == '*':
+        if played_map[i][j] == "x" and map_[i][j] == "*":
             jiroi = True
-        if played_map[i][j] == 'x':
+        if played_map[i][j] == "x":
             for k in range(8):
                 nr_ = i + nr[k]
                 nc_ = j + nc[k]
                 if 0 <= nr_ < N and 0 <= nc_ < N:
-                    if map_[nr_][nc_] == '*':
+                    if map_[nr_][nc_] == "*":
                         result[i][j] += 1
         else:
-            result[i][j] = '.'
+            result[i][j] = "."
 
 if jiroi:
-   for i in range(N):
+    for i in range(N):
         for j in range(N):
-            if map_[i][j] == '*':
-                result[i][j] = '*'
+            if map_[i][j] == "*":
+                result[i][j] = "*"
 
 for i in range(N):
     for j in range(N):
-        print(result[i][j], end='')
+        print(result[i][j], end="")
     print()
-

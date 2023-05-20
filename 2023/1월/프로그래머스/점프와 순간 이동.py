@@ -13,4 +13,3 @@ def solution(n):
             break
 
     return ans
-

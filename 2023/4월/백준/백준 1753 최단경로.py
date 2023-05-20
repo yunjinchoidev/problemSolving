@@ -1,6 +1,8 @@
 import heapq
 import sys
+
 input = sys.stdin.readline
+
 
 def dijkstra(start):
     q = []
@@ -16,11 +18,12 @@ def dijkstra(start):
                 dis[v] = cost
                 heapq.heappush(q, (cost, v))
 
+
 V, E = map(int, input().split())
 start = int(input())
 INF = 10**9
-dis = [INF]*(V+1)
-graph = [[] for _ in range(V+1)]
+dis = [INF] * (V + 1)
+graph = [[] for _ in range(V + 1)]
 for _ in range(E):
     u, v, w = map(int, input().split())
     graph[u].append((v, w))

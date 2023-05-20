@@ -1,6 +1,7 @@
 # Combinataion 을 이용한 풀이
 
 from itertools import combinations
+
 N, K = map(int, input().split())
 
 cards = list(map(int, input().split()))
@@ -14,19 +15,19 @@ for _ in r:
     rr.append(sum(_))
 
 rr.sort(reverse=True)
-print(rr[K-1])
+print(rr[K - 1])
 
 
 # set 이용한 풀이
 
-n, k =map(int, input().split())
+n, k = map(int, input().split())
 a = list(map(int, input().split()))
 res = set()
 
 for i in range(n):
-    for j in range(i+1, n):
-        for m in range(j+1, n):
-            res.add(a[i]+a[j]+a[m])
+    for j in range(i + 1, n):
+        for m in range(j + 1, n):
+            res.add(a[i] + a[j] + a[m])
 
 res = list(res)
 res.sort(reverse=True)

@@ -12,6 +12,6 @@ def solution(clothes):
 
     for idx, value in dict.items():
         # print(idx, value)
-        answer *= (value + 1)
+        answer *= value + 1
 
     return answer - 1

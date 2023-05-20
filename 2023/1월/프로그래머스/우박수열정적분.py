@@ -26,7 +26,7 @@ def solution(k, ranges):
         x = m[0]
         y = qq + m[1]
         if x < y:
-            answer.append(sum(s[x:y - 1]))
+            answer.append(sum(s[x : y - 1]))
         else:
             answer.append(-1)
 

@@ -10,12 +10,12 @@ left_number_idx = 0
 r = []
 for position in postions:
     if position < postions[left_number_idx]:
-        answer -= (N - left_number_idx)
+        answer -= N - left_number_idx
         answer += left_number_idx
     elif position == postions[left_number_idx]:
-        answer -= (N - left_number_idx)
+        answer -= N - left_number_idx
         answer += left_number_idx
-        left_number_idx += 1 # 왼쪽 갯수 증가
+        left_number_idx += 1  # 왼쪽 갯수 증가
 
     r.append((answer, position))
 

@@ -3,10 +3,11 @@ import sys
 N = int(input())
 
 
-number = int(10**(N-1))
+number = int(10 ** (N - 1))
 
 
 result = []
+
 
 def check(result, addStr):
     temp = "".join(result) + addStr
@@ -19,16 +20,17 @@ def check(result, addStr):
 
     return True
 
-answer = []
-def back():
 
+answer = []
+
+
+def back():
     global result
 
     if len(result) == N:
-        answer.append(int(''.join(result)))
-        print(int(''.join(result)))
+        answer.append(int("".join(result)))
+        print(int("".join(result)))
         exit()
-
 
     for i in range(1, 4):
         if check(result, str(i)):
@@ -38,4 +40,3 @@ def back():
 
 
 back()
-

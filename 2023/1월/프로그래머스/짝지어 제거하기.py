@@ -21,5 +21,4 @@ def solution(s):
     return answer
 
 
-
 # 스택을 이용해 간단하게 풀 수 있다.. .

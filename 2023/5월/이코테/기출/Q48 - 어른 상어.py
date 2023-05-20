@@ -22,6 +22,7 @@ for i in range(m):
 dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
 
+
 # 모든 냄새 정보를 업데이트
 def update_smell():
     # 각 위치를 하나씩 확인하며
@@ -34,6 +35,7 @@ def update_smell():
             if array[i][j] != 0:
                 smell[i][j] = [array[i][j], k]
 
+
 # 모든 상어를 이동시키는 함수
 def move():
     # 이동 결과를 담기 위한 임시 결과 테이블 초기화
@@ -43,16 +45,18 @@ def move():
         for y in range(n):
             # 상어가 존재하는 경우
             if array[x][y] != 0:
-                direction = directions[array[x][y] - 1] # 현재 상어의 방향
+                direction = directions[array[x][y] - 1]  # 현재 상어의 방향
                 found = False
                 # 일단 냄새가 존재하지 않는 곳이 있는지 확인
                 for index in range(4):
                     nx = x + dx[priorities[array[x][y] - 1][direction - 1][index] - 1]
                     ny = y + dy[priorities[array[x][y] - 1][direction - 1][index] - 1]
                     if 0 <= nx and nx < n and 0 <= ny and ny < n:
-                        if smell[nx][ny][1] == 0: # 냄새가 존재하지 않는 곳이면
+                        if smell[nx][ny][1] == 0:  # 냄새가 존재하지 않는 곳이면
                             # 해당 상어의 방향 이동시키기
-                            directions[array[x][y] - 1] = priorities[array[x][y] - 1][direction - 1][index]
+                            directions[array[x][y] - 1] = priorities[array[x][y] - 1][
+                                direction - 1
+                            ][index]
                             # 상어 이동시키기 (만약 이미 다른 상어가 있다면 번호가 낮은 것이 들어가도록)
                             if new_array[nx][ny] == 0:
                                 new_array[nx][ny] = array[x][y]
@@ -67,20 +71,23 @@ def move():
                     nx = x + dx[priorities[array[x][y] - 1][direction - 1][index] - 1]
                     ny = y + dy[priorities[array[x][y] - 1][direction - 1][index] - 1]
                     if 0 <= nx and nx < n and 0 <= ny and ny < n:
-                        if smell[nx][ny][0] == array[x][y]: # 자신의 냄새가 있는 곳이면
+                        if smell[nx][ny][0] == array[x][y]:  # 자신의 냄새가 있는 곳이면
                             # 해당 상어의 방향 이동시키기
-                            directions[array[x][y] - 1] = priorities[array[x][y] - 1][direction - 1][index]
+                            directions[array[x][y] - 1] = priorities[array[x][y] - 1][
+                                direction - 1
+                            ][index]
                             # 상어 이동시키기
                             new_array[nx][ny] = array[x][y]
                             break
     return new_array
 
+
 time = 0
 while True:
-    update_smell() # 모든 위치의 냄새를 업데이트
-    new_array = move() # 모든 상어를 이동시키기
-    array = new_array # 맵 업데이트
-    time += 1 # 시간 증가
+    update_smell()  # 모든 위치의 냄새를 업데이트
+    new_array = move()  # 모든 상어를 이동시키기
+    array = new_array  # 맵 업데이트
+    time += 1  # 시간 증가
 
     # 1번 상어만 남았는지 체크
     check = True
@@ -96,19 +103,6 @@ while True:
     if time >= 1000:
         print(-1)
         break
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # 기존 풀이
@@ -143,17 +137,16 @@ prioritys = [list(map(int, input().split())) for i in range(M * 4)]
 dr = [-1, 1, 0, 0]
 dc = [0, 0, -1, 1]
 
+
 def find_all_sharks():
     sharks = []
 
     for r in range(N):
         for c in range(N):
             if map_[r][c][0] != 0:
-                sharks.append([map_[r][c][0],
-                               map_[r][c][1],
-                               map_[r][c][2],
-                               map_[r][c][3],
-                               r, c]) # r,c 는 좌표임.
+                sharks.append(
+                    [map_[r][c][0], map_[r][c][1], map_[r][c][2], map_[r][c][3], r, c]
+                )  # r,c 는 좌표임.
 
     # 작은 상어부터 이동해서 첫번째걸 가져오는 방식.
     sharks.sort()
@@ -162,7 +155,6 @@ def find_all_sharks():
 
 # 특정 상어의 좋은 방향 찾기.
 def find_direction(shark):
-
     global map_
 
     num, d, scent_num, second, r, c = shark
@@ -172,10 +164,7 @@ def find_direction(shark):
     no_scent_direction = []
     my_scent_dirction = []
 
-
-
     for i in range(4):
-
         # priority 에서 꺼내줄 때는 1  빼준 값으로.
         new_direction = priority[i] - 1
 
@@ -221,7 +210,6 @@ def move_all_shark():
 
     # 모든 상어에 대해 이동 처리
     for shark in sharks:
-
         num, direc, sent_num, second, r, c = shark
 
         # 방향 최신화
@@ -236,14 +224,10 @@ def move_all_shark():
         # 중복 체크용에 넣어줌.
         dupli_shark_map_[nr][nc].append([num, direc, num, k, r, c])
 
-
     for r in range(N):
         for c in range(N):
-
-
             # 두 마리 이상의 상어가 들어왔으면 1번째 이후의 것들은 내쫓음.
             if len(dupli_shark_map_[r][c]) >= 2:
-
                 # 첫 상어만 이동 처리.
                 map_[r][c] = dupli_shark_map_[r][c][0][0:4]
 
@@ -251,12 +235,10 @@ def move_all_shark():
                 for i in range(1, len(dupli_shark_map_[r][c])):
                     num, direc, num, k, pre_r, pre_c = dupli_shark_map_[r][c][i]
 
-                    map_[pre_r][pre_c][0] = 0 # 상어
-                    map_[pre_r][pre_c][1] = 0 # 방향
-
+                    map_[pre_r][pre_c][0] = 0  # 상어
+                    map_[pre_r][pre_c][1] = 0  # 방향
 
             elif len(dupli_shark_map_[r][c]) == 1:
-
                 num, direc, num, k, pre_r, pre_c = dupli_shark_map_[r][c][0]
 
                 map_[r][c] = [num, direc, num, k]
@@ -268,10 +250,8 @@ def move_all_shark():
                 map_[r][c][0] = 0
                 map_[r][c][1] = 0
 
-
     for r in range(N):
         for c in range(N):
-
             if map_[r][c][0] == 0:
                 # 1 초만 남았으면
                 if map_[r][c][3] == 1:
@@ -285,7 +265,6 @@ def move_all_shark():
 
 # 1번 상어만 남아있는 지 여부 체크 함수
 def is_only_first_shark():
-
     global map_
 
     for r in range(N):
@@ -299,7 +278,6 @@ def is_only_first_shark():
 time = 0
 
 while True:
-
     # 1 번 상어만 존재하는 지 여부
     if is_only_first_shark():
         break

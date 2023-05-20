@@ -10,7 +10,6 @@ dr = [1, -1, 0, 0]
 dc = [0, 0, 1, -1]
 
 
-
 for _ in range(T):
     N = int(input())
 
@@ -42,4 +41,4 @@ for _ in range(T):
             if cost < distance[nr][nc]:
                 distance[nr][nc] = cost
                 heapq.heappush(q, (cost, nr, nc))
-    print(distance[N-1][N-1])
+    print(distance[N - 1][N - 1])

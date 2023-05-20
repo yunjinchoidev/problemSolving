@@ -1,4 +1,5 @@
 import sys
+
 input = sys.stdin.readline
 
 N = int(input())
@@ -10,12 +11,12 @@ for k in range(N):
         for j in range(N):
             if i == j:
                 continue
-            if map_[i][j] == 'Y':
+            if map_[i][j] == "Y":
                 f[i][j] = 1
-            elif map_[i][k] == 'Y' and map_[k][j] == 'Y':
+            elif map_[i][k] == "Y" and map_[k][j] == "Y":
                 f[i][j] = 1
 
-m = float('-inf')
+m = float("-inf")
 for r in range(N):
     for c in range(N):
         m = max(m, sum(f[r]))

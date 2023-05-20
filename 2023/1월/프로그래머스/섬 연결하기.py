@@ -27,7 +27,6 @@ def solution(n, costs):
         candidate_edge_list = adjacent_edges[start_node]
         heapq.heapify(candidate_edge_list)
         while candidate_edge_list:
-
             weight, n1, n2 = heapq.heappop(candidate_edge_list)
             if n2 not in connected_nodes:  ## 아직 방문 안한 것만
                 connected_nodes.add(n2)
@@ -39,7 +38,7 @@ def solution(n, costs):
 
         return mst
 
-    mm = prim('0', cost2)
+    mm = prim("0", cost2)
     for i in mm:
         answer += i[0]
 

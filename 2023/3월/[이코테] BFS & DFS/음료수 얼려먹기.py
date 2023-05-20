@@ -44,7 +44,7 @@ icecream_cnt = 0
 for r in range(N):
     for c in range(M):
         if map_[r][c] == 0 and not visited[r][c]:
-            print(r,c)
+            print(r, c)
             BFS(r, c)
             icecream_cnt += 1
 

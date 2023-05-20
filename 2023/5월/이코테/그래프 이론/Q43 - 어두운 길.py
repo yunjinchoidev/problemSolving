@@ -1,4 +1,5 @@
 import sys
+
 input = sys.stdin.readline
 
 N, M = map(int, input().split())
@@ -41,18 +42,3 @@ for i in range(M):
         result += cost
 
 print(total_sum - result)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

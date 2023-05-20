@@ -14,9 +14,9 @@ for _ in range(M):
 INF = int(1e9)
 distance = [INF] * (N + 1)
 
+
 # 다익스트라
 def dijkstra(start):
-
     q = []
     heapq.heappush(q, (0, start))
     distance[start] = 0
@@ -30,6 +30,7 @@ def dijkstra(start):
             if cost < distance[i[0]]:
                 distance[i[0]] = cost
                 heapq.heappush(q, (cost, i[0]))
+
 
 print(graph)
 print(dijkstra(C))
@@ -45,5 +46,4 @@ for dis in distance:
         answer += 1
         time_answer = max(time_answer, dis)
 
-print(answer-1, time_answer)
-
+print(answer - 1, time_answer)

@@ -10,13 +10,10 @@ while True:
     numbers.rotate()
     robot.rotate()
 
-    robot[N-1] = False
-
+    robot[N - 1] = False
 
     for i in range(N - 2, -1, -1):
-        if robot[i] == True \
-                and robot[i + 1] == False \
-                and numbers[i + 1] > 0:
+        if robot[i] == True and robot[i + 1] == False and numbers[i + 1] > 0:
             robot[i] = False
             robot[i + 1] = True
             numbers[i + 1] -= 1

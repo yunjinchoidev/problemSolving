@@ -12,7 +12,6 @@ def solution(jobs):
     visited = [False for i in range(len(jobs))]
 
     while True:
-
         hh = []
         for i in range(len(jobs)):
             if jobs[i][0] <= time and visited[i] == False:

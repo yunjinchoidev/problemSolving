@@ -5,7 +5,7 @@ class Solution:
         for idx, value in enumerate(score):
             r.append((value[k], idx))
 
-        r.sort(key = lambda x:-x[0])
+        r.sort(key=lambda x: -x[0])
         # print(r)
 
         for idx, value in enumerate(r):

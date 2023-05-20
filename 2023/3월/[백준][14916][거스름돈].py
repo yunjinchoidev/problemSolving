@@ -1,5 +1,6 @@
 import math
 import time
+
 # import sys
 # input = sys.stdin.readline
 
@@ -25,5 +26,5 @@ if N == 1 or N == 3:
 
 # 종료시간
 end_time = time.time()
-print("WorkingTime: {} sec".format(end_time-start_time))
+print("WorkingTime: {} sec".format(end_time - start_time))
 print(int(answer))

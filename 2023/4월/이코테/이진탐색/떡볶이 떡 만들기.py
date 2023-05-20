@@ -7,10 +7,11 @@ idx = 1
 s = 0
 answer = 0
 
+
 def binary_search(start, end, numbers, M):
     result = 0
     while start <= end:
-        mid = (start+end)//2
+        mid = (start + end) // 2
 
         s = 0
         for number in numbers:
@@ -24,5 +25,6 @@ def binary_search(start, end, numbers, M):
             end = mid - 1
 
     return result
+
 
 print(binary_search(0, height, numbers, M))

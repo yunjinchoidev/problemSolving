@@ -58,9 +58,11 @@ def bfs2(row, col, depth):
             nc = c + dc[i]
 
             if 0 <= nr < N and 0 <= nc < N:
-
-                if not visited[nr][nc] and map__[r][c] != 0 and \
-                        map__[r][c] != map__[row][col]:  # 그지점이 최솟값이요.
+                if (
+                    not visited[nr][nc]
+                    and map__[r][c] != 0
+                    and map__[r][c] != map__[row][col]
+                ):  # 그지점이 최솟값이요.
                     return d
 
                 if not visited[nr][nc] and map_[nr][nc] == 0:  # 그 방향으론 일단 가시오.
@@ -82,7 +84,8 @@ def bfs2(row, col, depth):
 # print(result)
 # print(min(result))
 
-answer = float('inf')
+answer = float("inf")
+
 
 # 바다를 건너며 가장 짧은 거리를 구한다.
 def bfs2(z):

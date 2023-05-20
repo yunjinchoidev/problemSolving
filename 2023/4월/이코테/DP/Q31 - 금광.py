@@ -9,7 +9,6 @@ def input():
 T = int(input())
 
 for t in range(T):
-
     N, M = map(int, input().split())
 
     map_ = [[] for i in range(N)]
@@ -30,12 +29,12 @@ for t in range(T):
                 x = 0
                 for i in range(-1, 2, 1):
                     if 0 <= r + i < N:
-                        x = max(x, prefix_map[r+i][c-1])
+                        x = max(x, prefix_map[r + i][c - 1])
                 prefix_map[r][c] = x + map_[r][c]
 
     answer = 0
     for c in range(N):
-        answer = max(answer, prefix_map[c][M-1])
+        answer = max(answer, prefix_map[c][M - 1])
 
     pprint(prefix_map)
     print(answer)

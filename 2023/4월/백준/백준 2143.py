@@ -1,5 +1,6 @@
 from collections import Counter
 import sys
+
 input = sys.stdin.readline
 
 T = int(input())
@@ -12,12 +13,12 @@ prefix_A = []
 
 for i in range(N):
     for j in range(i, N, 1):
-        prefix_A.append(sum(array1[i:j + 1]))
+        prefix_A.append(sum(array1[i : j + 1]))
 
 prefix_B = []
 for i in range(M):
     for j in range(i, M, 1):
-        prefix_B.append(sum(array2[i:j+1]))
+        prefix_B.append(sum(array2[i : j + 1]))
 
 # print(prefix_A)
 # print(prefix_B)

@@ -1,8 +1,13 @@
 N = int(input())
+
+
 def is_available(candidate, current_col):
     current_row = len(candidate)
     for queen_row in range(current_row):
-        if candidate[queen_row] == current_col or abs(candidate[queen_row] - current_col) == current_row - queen_row:
+        if (
+            candidate[queen_row] == current_col
+            or abs(candidate[queen_row] - current_col) == current_row - queen_row
+        ):
             return False
     return True
 

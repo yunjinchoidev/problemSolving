@@ -1,5 +1,3 @@
-
-
 # 회전 시키기.
 def rotate_2d(m):
     N = len(m)
@@ -14,7 +12,7 @@ def rotate_2d(m):
 # 가운데 원본 자물쇠만 확인한다.
 def check(array):
     num = len(array) // 3
-    for i in range(num, num * 2): ## 가운데 원복 자물쇠 영역만 검사
+    for i in range(num, num * 2):  ## 가운데 원복 자물쇠 영역만 검사
         for j in range(num, num * 2):
             if array[i][j] != 1:
                 return False
@@ -36,7 +34,6 @@ def solution(key, lock):
     for i in range(4):
         for mr in range(0, 2 * len(lock) + 1, 1):
             for mc in range(0, 2 * len(lock) + 1, 1):
-
                 # 새로운 자물쇠에 열쇠를 덧덴다.
                 for a in range(len(key)):
                     for b in range(len(key)):

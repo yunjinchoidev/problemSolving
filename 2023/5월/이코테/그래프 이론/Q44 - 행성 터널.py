@@ -1,11 +1,14 @@
 import sys
+
 input = sys.stdin.readline
 N = int(input())
+
 
 def find_parent(parent, x):
     if parent[x] != x:
         parent[x] = find_parent(parent, parent[x])
     return parent[x]
+
 
 # 두 원소가 속한 집합을 합치기
 def union_parent(parent, a, b):
@@ -37,9 +40,9 @@ y.sort()
 z.sort()
 
 for i in range(N - 1):
-    edges.append((x[i + 1][0] - x[i][0], x[i+1][1], x[i][1]))
-    edges.append((y[i + 1][0] - y[i][0], y[i+1][1], y[i][1]))
-    edges.append((z[i + 1][0] - z[i][0], z[i+1][1], z[i][1]))
+    edges.append((x[i + 1][0] - x[i][0], x[i + 1][1], x[i][1]))
+    edges.append((y[i + 1][0] - y[i][0], y[i + 1][1], y[i][1]))
+    edges.append((z[i + 1][0] - z[i][0], z[i + 1][1], z[i][1]))
 
 edges.sort()
 

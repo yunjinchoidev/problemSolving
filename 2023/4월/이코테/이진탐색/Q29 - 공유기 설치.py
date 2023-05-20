@@ -12,14 +12,12 @@ start, end = 1, houses[n - 1] - houses[0]
 result = 0
 
 if c == 2:
-
     # 집이 2개라면 무조건 처음, 마지막 집 사이의 거리
     print(houses[n - 1] - houses[0])
 
 else:
-
     # 이진 탐색
-    while (start < end):
+    while start < end:
         mid = (start + end) // 2
 
         count = 1
@@ -29,7 +27,7 @@ else:
         for i in range(n):
             if houses[i] - old >= mid:  # 공유기 거리가 mid 이상이면 설치함.
                 count += 1
-                old = houses[i] # 공유기 위치 갱신
+                old = houses[i]  # 공유기 위치 갱신
 
         if count >= c:
             result = mid

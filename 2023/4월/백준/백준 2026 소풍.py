@@ -9,7 +9,7 @@ def input():
 K, N, F = map(int, input().split())
 
 # 1. 소풍에 갈 수 있는 학생들의 번호를 입력받는다.
-friends_adjascent = [[] for _ in range(N+1)]
+friends_adjascent = [[] for _ in range(N + 1)]
 
 input_friends = set()
 
@@ -18,6 +18,7 @@ for _ in range(F):
     friends_adjascent[s].append(e)
     friends_adjascent[e].append(s)
     input_friends.add(s)
+
 
 def dfs(v, arr):
     if len(arr) == K:
@@ -34,8 +35,9 @@ def dfs(v, arr):
                 visited[i] = True
                 dfs(i, arr + [i])
 
+
 for friend in input_friends:
-    visited = [False for _ in range(N+1)]
+    visited = [False for _ in range(N + 1)]
     visited[friend] = True
     dfs(friend, [friend])
 

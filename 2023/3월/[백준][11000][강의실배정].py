@@ -23,8 +23,7 @@ max_lecture_cnt = 0
 # heapq.heappop(h)
 
 while True:
-
-    if not h :
+    if not h:
         break
 
     if lectureing:

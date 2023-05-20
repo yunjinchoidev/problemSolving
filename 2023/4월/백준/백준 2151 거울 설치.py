@@ -14,10 +14,15 @@ for _ in range(N):
 
 for i in range(N):
     for j in range(N):
-        if listMap[i][j] == '#':
+        if listMap[i][j] == "#":
             listPos.append((i, j))
 
-startPosX, startPosY, endPosX, endPosY = listPos[0][0], listPos[0][1], listPos[1][0], listPos[1][1]
+startPosX, startPosY, endPosX, endPosY = (
+    listPos[0][0],
+    listPos[0][1],
+    listPos[1][0],
+    listPos[1][1],
+)
 q = deque()
 q.append((listPos[0], 0, 0))
 q.append((listPos[0], 0, 1))
@@ -30,7 +35,9 @@ while q:
     movePosX = posX + dx[direction]
     movePosY = posY + dy[direction]
 
-    while 0 <= movePosX < N and 0 <= movePosY < N and listMap[movePosX][movePosY] != '*':
+    while (
+        0 <= movePosX < N and 0 <= movePosY < N and listMap[movePosX][movePosY] != "*"
+    ):
         if listMap[movePosX][movePosY] == "!":
             if direction == 0 or direction == 2:
                 q.append(((movePosX, movePosY), mirrorCount + 1, 1))

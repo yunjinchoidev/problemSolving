@@ -1,17 +1,17 @@
 def solution(p):
-    answer = ''
+    answer = ""
 
     # 균형잡힌 괄호 문자열 확인
     def separate_u_v(p):  # 문자열 p를 u와 v로 분리
         # u : 균형잡힌 괄호 문자열, v : 나머지
         open_p, close_p = 0, 0
         for i in range(len(p)):
-            if p[i] == '(':
+            if p[i] == "(":
                 open_p += 1
             else:
                 close_p += 1
             if open_p == close_p:
-                return p[:i + 1], p[i + 1:]  # u, v
+                return p[: i + 1], p[i + 1 :]  # u, v
 
     # 올바른 괄호 문자열 확인
     def is_correct_string(input_string):
@@ -39,15 +39,14 @@ def solution(p):
     # 뒤집기
     def get_reverse_string(strings):
         reverse_dict = {"(": ")", ")": "("}
-        result = ''
+        result = ""
         for string in strings:
             result += reverse_dict[string]
         return result
 
     def make_correct_string(s):
-
-        if s == '':
-            return ''
+        if s == "":
+            return ""
 
         u, v = separate_u_v(s)  # 과정 2
 

@@ -11,9 +11,9 @@ graph_cost = [[] for i in range(N + 1)]  # 강의별 시간 저장
 
 for i in range(1, N + 1):
     numbers = list(map(int, input().split()))
-    graph_cost[i] = numbers[0] # 첫째꺼는 강의의 시간임.
+    graph_cost[i] = numbers[0]  # 첫째꺼는 강의의 시간임.
     for j in range(1, len(numbers) - 1):
-        graph[numbers[j]].append(i) # 선수강 해야 하는 강의 연결하기
+        graph[numbers[j]].append(i)  # 선수강 해야 하는 강의 연결하기
         indegree[i] += 1
 
 graph_sum_cost = [[] for i in range(N + 1)]
@@ -30,13 +30,13 @@ def topology_sort():
 
     while q:
         now, now_cost = q.popleft()
-        result.append((now, now_cost)) # result 에 넣어주기
+        result.append((now, now_cost))  # result 에 넣어주기
 
         for i in graph[now]:
             indegree[i] -= 1
 
             if indegree[i] == 0:
-                q.append((i, now_cost+graph_cost[i])) # 시간 더해서 넣어주기
+                q.append((i, now_cost + graph_cost[i]))  # 시간 더해서 넣어주기
 
     return result
 
@@ -48,4 +48,3 @@ answer.sort()
 
 for ans in answer:
     print(ans[1])
-

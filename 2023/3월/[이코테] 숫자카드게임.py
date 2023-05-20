@@ -6,6 +6,6 @@ r = []
 for idx, value in enumerate(arry):
     r.append([idx, min(value)])
 
-r.sort(key=lambda x:-x[1])
+r.sort(key=lambda x: -x[1])
 
 print(r[0][1])

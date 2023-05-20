@@ -15,7 +15,6 @@ for a in range(1, N + 1):
             graph[a][b] = 0
 
 for _ in range(M):
-
     s, e, distance = map(int, input().split())
 
     if graph[s][e] > distance:
@@ -29,7 +28,6 @@ for k in range(1, N + 1):
 
 for r in range(1, N + 1):
     for c in range(1, N + 1):
-
         if graph[r][c] == INF:
             print(0, end=" ")
 

@@ -27,10 +27,9 @@ for i in range(N):
             visited[i][j] = True
 
 while True:
-
-    '''
-    STEP 1 
-    '''
+    """
+    STEP 1
+    """
     # 방향 반시계 방향 90도.
     direction = (direction + 1) % 4
 
@@ -53,12 +52,11 @@ while True:
     if block_cnt >= 4:
         all_block = True
 
-    '''
+    """
     STEP 3
-    '''
+    """
     # 사방이 막혀있는 경우 바라보고 있는 방향에서 뒤로 이동한다.
     if all_block:
-
         # direction = (direction - 1) % 4
         # if direction == -1:
         #     direction = 3
@@ -76,7 +74,7 @@ while True:
 
         row = nrow
         column = ncolumn
-        back_yn = True # 뒤로 간다.
+        back_yn = True  # 뒤로 간다.
         visited[nrow][ncolumn] = True
 
         # 뒤로 이동한 상태를 유지하면서 재반복문.
@@ -89,11 +87,10 @@ while True:
         answer = -1
         break
 
-    '''
+    """
     STEP 2 -> 육지인경우
-    '''
+    """
     if map[nrow][ncolumn] == 0:
-
         if back_yn:
             # 방문하지 않은 경우에만 더해준다.
             if not visited[nrow][ncolumn]:

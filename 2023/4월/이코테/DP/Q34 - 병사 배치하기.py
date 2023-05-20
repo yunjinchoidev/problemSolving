@@ -15,7 +15,6 @@ dp[1] = 1
 
 
 for i in range(2, N + 1):
-
     # 새롭게 추가되는 병사 기준으로 왼쪽으로 반복문을 진행하면서 dp 를 갱신해나간다.
     for j in range(1, i + 1):
         if soldiers[i - j] <= soldiers[i]:  # 뒤쪽 군인이 군사력이 더 크다면 오름차순이 되므로 체크 안함.

@@ -6,6 +6,6 @@ numbers = [int(sys.stdin.readline()) for i in range(N)]
 heapq.heapify(numbers)
 answer = 0
 for i in range(N):
-    x = abs(i+1 - heapq.heappop(numbers))
+    x = abs(i + 1 - heapq.heappop(numbers))
     answer += x
 print(answer)

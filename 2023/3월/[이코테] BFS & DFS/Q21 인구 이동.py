@@ -66,7 +66,6 @@ def population_move_dfs(row, col, depth, sum_number, visited):
             countries[i][j] = total_population // len(move_contries)
         return True  # 이동을 했다.
 
-
     # 여기 까지 왔다면 이동을 안했다는 것.
     return False  # 이동을 안했다.
 
@@ -86,7 +85,9 @@ while True:
     for r in range(N):
         for c in range(N):
             if not visited[r][c]:
-                if population_move_dfs(r, c, 0, countries[r][c], visited): # 이동이 있었다면 while 문 계속 진행
+                if population_move_dfs(
+                    r, c, 0, countries[r][c], visited
+                ):  # 이동이 있었다면 while 문 계속 진행
                     is_updated = True
 
     # 한 번도 이동이 없었다면
